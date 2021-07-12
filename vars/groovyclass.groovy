@@ -6,4 +6,3 @@ def call() {
   javaGroovy.mul()
 }
 
-}
