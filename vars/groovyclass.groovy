@@ -1,21 +1,9 @@
 import io.stage.JavaGroovy
 
 
-class executeJava implements Serializable{
-
+def call() {
   JavaGroovy javaGroovy = new JavaGroovy();
+  javaGroovy.mul()
+}
 
-
-  /**
-   * no argument Constructor. This would invoke while an object of this class is created without passing any arguments.
-   */
-  executeJava(){
-  }
-
-  def setJava(){
-    javaGroovy.mul()
-  }
-
-
-
- }
+}
