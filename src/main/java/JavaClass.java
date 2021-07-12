@@ -1,4 +1,4 @@
-package package_java;
+package packagejava;
 
 import java.io.Serializable;
 
