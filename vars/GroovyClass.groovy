@@ -3,7 +3,7 @@ import main.java.test.*
 
 class executeJava implements Serializable{
 
-  JavaClass javaGroovy = new JavaClass();
+  JavaGroovy javaGroovy = new JavaGroovy();
 
 
   /**
