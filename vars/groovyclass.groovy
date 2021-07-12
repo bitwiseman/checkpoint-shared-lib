@@ -1,4 +1,4 @@
-import main.java.test.*
+import io.stage.JavaGroovy
 
 
 class executeJava implements Serializable{
