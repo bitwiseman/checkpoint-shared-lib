@@ -9,9 +9,9 @@ def call(parameterMap) {
                 }
                 stash name: 'infra-files', includes: 'infra/**', allowEmpty: true, useDefaultExcludes: false
             }
+            function2()
         }
     }
-    function2()
     function1()
 }
 
@@ -37,13 +37,10 @@ def prepareInfraDryRunStages(){
 }
 
 def function2() {
-    return node('pod') {
-        stage('Paralel inside node') {
-            Map<String, Closure> dryRunStages = addInfraDryRunStages()
-            parallel dryRunStages
-        }
-    }
+    Map<String, Closure> dryRunStages = addInfraDryRunStages()
+    parallel dryRunStages
 }
+
 
 def function1() {
     checkpoint('Start prod env deployment')
