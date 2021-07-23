@@ -8,8 +8,6 @@ def call(parameterMap) {
                     echo('Validating infra.yml')
                 }
                 stash name: 'infra-files', includes: 'infra/**', allowEmpty: true, useDefaultExcludes: false
-                Map<String, Closure> dryRunStages = addInfraDryRunStages()
-                parallel dryRunStages
             }
         }
     }
