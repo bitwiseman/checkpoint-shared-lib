@@ -6,6 +6,7 @@ def call(parameterMap) {
       stash name: "infra-files", includes: "*.txt", allowEmpty: true, useDefaultExcludes: false
     }
     stage('Paralel inside node') {
+      container('pod') {
       parallel([
         hello: {
           echo "hello"
@@ -16,6 +17,7 @@ def call(parameterMap) {
       ])
     }
   }
+}
   function1()
 }
 
