@@ -28,7 +28,7 @@ def prepareInfraDryRunStages(){
     parallelStage =  ["Dry run for": {
         stage("Executing infra dry run for "){
             dir("infra"){
-                sh(label: 'Creating aws directory', script: "mkdir -p /root/.aws", returnStatus:false)
+                sh(label: 'Creating aws directory', script: "mkdir -p test", returnStatus:false)
                 echo("Deleting aws directory")
                 echo("Preparing aws credentials")
             }
