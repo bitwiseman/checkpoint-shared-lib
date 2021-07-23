@@ -2,8 +2,13 @@ def call(parameterMap) {
   node("pod") {
     stage("Checkout code") {
       Map tempParameterMap = [: ]
-      sh("echo 'testContent' >> file.txt")
-      stash name: "infra-files", includes: "*.txt", allowEmpty: true, useDefaultExcludes: false
+      sh("mkdir infra")
+        dir("infra"){
+            sh("echo 'testContent' >> file.txt")
+            echo("Validating infra.yml")
+        }
+      stash name: "infra-files", includes: "infra/**", allowEmpty: true, useDefaultExcludes: false
+
     }
     stage('Paralel inside node') {
       parallel([
