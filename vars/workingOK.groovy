@@ -37,11 +37,9 @@ def prepareInfraDryRunStages(){
 }
 
 def function2() {
-    node('pod') {
-        container('pod') {
-            Map<String, Closure> dryRunStages = addInfraDryRunStages()
-            parallel dryRunStages
-        }
+    stage('Paralel inside node') {
+        Map<String, Closure> dryRunStages = addInfraDryRunStages()
+        parallel dryRunStages
     }
 }
 
