@@ -2,7 +2,6 @@ def call(parameterMap) {
     node('pod') {
         container('pod') {
             stage('Checkout code') {
-                Map tempParameterMap = [: ]
                 sh('mkdir infra')
                 dir('infra') {
                     sh("echo 'testContent' >> file.txt")
@@ -10,20 +9,34 @@ def call(parameterMap) {
                 }
                 stash name: 'infra-files', includes: 'infra/**', allowEmpty: true, useDefaultExcludes: false
             }
-            stage('Paralel inside node') {
-                parallel([
-        hello: {
-          echo 'hello'
-        },
-        world: {
-          echo 'world'
-        }
-      ])
-            }
+            Map<String, Closure> dryRunStages = addInfraDryRunStages()
+            parallel dryRunStages
         }
     }
     function1()
 }
+
+def addInfraDryRunStages(){
+    Map<String, Closure> dryRunStages = [:]
+    Map tempParameterMap = prepareInfraDryRunStages()
+    dryRunStages.putAll(tempParameterMap)
+    return dryRunStages
+}
+
+def prepareInfraDryRunStages(){
+
+    parallelStage =  ["Dry run for": {
+        stage("Executing infra dry run for "){
+            dir("infra"){
+                sh(label: 'Creating aws directory', script: "mkdir -p /root/.aws", returnStatus:false)
+                echo("Deleting aws directory")
+                echo("Preparing aws credentials")
+            }
+        }
+    }]
+    return parallelStage
+}
+
 
 def function1() {
     checkpoint('Start prod env deployment')
