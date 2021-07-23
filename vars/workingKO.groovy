@@ -34,7 +34,9 @@ def function1() {
   node("pod") {
     unstash "infra-files"
     stage("Manual step for deploying changes to staging") {
-      sh("cat file.txt")
+        dir("infra"){
+            sh("cat file.txt")
+        }
     }
   }
 }
