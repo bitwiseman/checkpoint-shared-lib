@@ -8,6 +8,7 @@ def call(parameterMap) {
       function1()
       function2()
     }
+}
 
     def function1() {
       checkpoint("Start prod env deployment")
@@ -38,4 +39,3 @@ def call(parameterMap) {
         }
       }
     }
-}
